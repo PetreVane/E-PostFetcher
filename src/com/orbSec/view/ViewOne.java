@@ -2,6 +2,7 @@ package com.orbSec.view;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 
@@ -27,6 +28,10 @@ public class ViewOne {
         pane.getChildren().add(button);
     }
 
+    @FXML
+    public void buttonClicked() {
+        System.out.println("Button clicked");
+    }
 
 
     //        Button button = new Button();
