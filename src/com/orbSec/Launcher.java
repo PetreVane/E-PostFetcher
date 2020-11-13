@@ -16,10 +16,10 @@ public class Launcher extends Application {
     public void start(Stage stage) throws Exception {
 
 //        FXMLLoader fXMLLoader;
-        Parent parent = FXMLLoader.load(getClass().getResource("view/LoginWindow.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("view/MainWindow.fxml"));
 
         // add panel to scene
-        Scene scene = new Scene(parent, 800, 400);
+        Scene scene = new Scene(parent); // 966, 786);
 
         // add scene to stage
         stage.setScene(scene);

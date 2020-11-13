@@ -7,4 +7,5 @@ module EmailClient {
 
     opens com.orbSec;
     opens com.orbSec.view;
+    opens com.orbSec.controller;
 }
