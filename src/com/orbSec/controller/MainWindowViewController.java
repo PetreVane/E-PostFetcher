@@ -1,7 +1,7 @@
 package com.orbSec.controller;
 
 import com.orbSec.EmailManager;
-import com.orbSec.view.ViewFactory;
+import com.orbSec.view.Coordinator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
@@ -21,8 +21,8 @@ public class MainWindowViewController  extends BaseController {
 
     private String fxmlName;
 
-    public MainWindowViewController(EmailManager emailManager, ViewFactory viewFactory, String fxmlName) {
-        super(emailManager, viewFactory, fxmlName);
+    public MainWindowViewController(EmailManager emailManager, Coordinator coordinator, String fxmlName) {
+        super(emailManager, coordinator, fxmlName);
     }
 
 

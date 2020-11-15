@@ -1,18 +1,18 @@
 package com.orbSec.controller;
 
 import com.orbSec.EmailManager;
-import com.orbSec.view.ViewFactory;
+import com.orbSec.view.Coordinator;
 
 public abstract class BaseController {
 
-    private EmailManager emailManager;
-    private ViewFactory viewFactory;
+    protected EmailManager emailManager;
+    protected Coordinator coordinator;
     private String fxmlName;
 
 
-    public BaseController(EmailManager emailManager, ViewFactory viewFactory, String fxmlName) {
+    public BaseController(EmailManager emailManager, Coordinator coordinator, String fxmlName) {
         this.emailManager = emailManager;
-        this.viewFactory = viewFactory;
+        this.coordinator = coordinator;
         this.fxmlName = fxmlName;
     }
 
