@@ -39,7 +39,6 @@ public class ViewFactory {
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.show();
-
-        // <!--        fx:controller="com.orbSec.controller.LoginWindowController"-->
+        
     }
 }
