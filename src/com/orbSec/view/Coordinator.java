@@ -23,6 +23,7 @@ public class Coordinator {
         this.emailManager = emailManager;
     }
 
+    // Presents the login screen. This is called when the app starts
     public void presentLoginScreen() {
         System.out.println("Login screen presented");
         BaseController loginController = new LoginWindowController(emailManager, this, loginFxmlPath);
@@ -30,6 +31,7 @@ public class Coordinator {
         System.out.println("Your array contains " + activeStages.size() + " stage");
     }
 
+    // Presents the main window. This is called when authentication is successful
     public void presentMainScreen() {
         System.out.println("presetMainScreen method called");
         BaseController mainController = new MainWindowViewController(emailManager, this, mainFxmlPath);
@@ -38,6 +40,7 @@ public class Coordinator {
         closeStage(activeStages.get(0));
     }
 
+    // Prepares the stage for the controller that calls this method
     private void setStageFor(BaseController controller) {
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(controller.getFxmlName()));
@@ -60,6 +63,7 @@ public class Coordinator {
         activeStages.add(stage);
     }
 
+    // Closes the stage for the controller that no longer needs to be shown. Example: called on login screen when authentication is successful
     public void closeStage(Stage stageToBeClosed) {
         if (activeStages.contains(stageToBeClosed)) {
             activeStages.remove(stageToBeClosed);
