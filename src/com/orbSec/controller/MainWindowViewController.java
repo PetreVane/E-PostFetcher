@@ -29,5 +29,6 @@ public class MainWindowViewController  extends BaseController {
     @FXML
     void optionButtonPressed(ActionEvent event) {
         System.out.println("Option button pressed");
+        coordinator.presentOptionsScreen();
     }
 }

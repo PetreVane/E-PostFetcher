@@ -1,50 +1,74 @@
 package com.orbSec.view;
 
 import com.orbSec.EmailManager;
+import com.orbSec.constants.ColorThemes;
+import com.orbSec.constants.FontSize;
 import com.orbSec.controller.BaseController;
 import com.orbSec.controller.LoginWindowController;
 import com.orbSec.controller.MainWindowViewController;
+import com.orbSec.controller.OptionsWindowController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Coordinator {
 
     EmailManager emailManager;
-    private String loginFxmlPath = "LoginWindow.fxml";
-    private String mainFxmlPath = "MainWindow.fxml";
-    private ArrayList<Stage> activeStages = new ArrayList<>();
+
+    private String loginFxml = "LoginWindow.fxml";
+    private String mainFxml = "MainWindow.fxml";
+    private String optionsFxml = "OptionsWindow.fxml";
+    private HashMap<String, Stage> activeStages = new HashMap<>();
+
+    private ColorThemes colorThemes = ColorThemes.DEFAULT;
+    private FontSize fontSize = FontSize.MEDIUM;
 
     public Coordinator(EmailManager emailManager) {
         this.emailManager = emailManager;
     }
 
+    ///MARK: - Screen instantiation
+
     // Presents the login screen. This is called when the app starts
     public void presentLoginScreen() {
         System.out.println("Login screen presented");
-        BaseController loginController = new LoginWindowController(emailManager, this, loginFxmlPath);
+        BaseController loginController = new LoginWindowController(emailManager, this, loginFxml);
         setStageFor(loginController);
-        System.out.println("Your array contains " + activeStages.size() + " stage");
     }
 
     // Presents the main window. This is called when authentication is successful
     public void presentMainScreen() {
         System.out.println("presetMainScreen method called");
-        BaseController mainController = new MainWindowViewController(emailManager, this, mainFxmlPath);
+        BaseController mainController = new MainWindowViewController(emailManager, this, mainFxml);
         setStageFor(mainController);
-        System.out.println("Your array now contains " + activeStages.size() + " stages");
-        closeStage(activeStages.get(0));
+        removeStageForController(loginFxml);
     }
+
+    // Presets option Screen
+    public void presentOptionsScreen() {
+        System.out.println("present options screen called");
+        BaseController optionsController = new OptionsWindowController(emailManager, this, optionsFxml);
+        setStageFor(optionsController);
+    }
+
+    // Dismisses the Options screen when user closes the window
+    public void dismissOptionsScreen() {
+        removeStageForController(optionsFxml);
+    }
+
+
+    ///MARK: - Stage configuration
 
     // Prepares the stage for the controller that calls this method
     private void setStageFor(BaseController controller) {
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(controller.getFxmlName()));
         fxmlLoader.setController(controller);
+        String controllerName = controller.getFxmlName();
 
         Parent parent;
 
@@ -60,20 +84,29 @@ public class Coordinator {
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.show();
-        activeStages.add(stage);
+        activeStages.put(controllerName, stage);
     }
 
-    // Closes the stage for the controller that no longer needs to be shown. Example: called on login screen when authentication is successful
-    public void closeStage(Stage stageToBeClosed) {
-        if (activeStages.contains(stageToBeClosed)) {
-            activeStages.remove(stageToBeClosed);
-            System.out.println("Stage has been removed from list");
-            stageToBeClosed.close();
-            System.out.println("Stage has been closed");
 
-        } else {
-            System.out.println("Your array does not contain this stage");
-            System.out.println("Stages so far: " + activeStages.size());
+    private void removeStageForController(String objectForKey) {
+
+        // ensures there is an object for this key
+        Stage stageToBeClosed = activeStages.get(objectForKey);
+        if (stageToBeClosed != null) {
+            activeStages.remove(objectForKey);
+            stageToBeClosed.close();
+            System.out.println("Stage removed and closed");
         }
     }
+
+    ///MARK: -  Getters & Setters
+
+    public ColorThemes getColorTheme() {
+        return colorThemes;
+    }
+
+    public FontSize getFontSize() {
+        return fontSize;
+    }
+
 }
