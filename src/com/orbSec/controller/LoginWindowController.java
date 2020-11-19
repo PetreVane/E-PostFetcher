@@ -25,7 +25,6 @@ public class LoginWindowController extends BaseController {
 
     @FXML
     void loginButtonPressed() {
-        System.out.println("Button pressed, yeeei");
         String userName = emailTextField.getText();
         String password = passTextField.getText();
         errorLabel.setText(" ");

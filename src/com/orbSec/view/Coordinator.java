@@ -35,14 +35,12 @@ public class Coordinator {
 
     // Presents the login screen. This is called when the app starts
     public void presentLoginScreen() {
-        System.out.println("Login screen presented");
         BaseController loginController = new LoginWindowController(emailManager, this, loginFxml);
         setStageFor(loginController);
     }
 
     // Presents the main window. This is called when authentication is successful
     public void presentMainScreen() {
-        System.out.println("presetMainScreen method called");
         BaseController mainController = new MainWindowViewController(emailManager, this, mainFxml);
         setStageFor(mainController);
         removeStageForController(loginFxml);
@@ -50,7 +48,6 @@ public class Coordinator {
 
     // Presets option Screen
     public void presentOptionsScreen() {
-        System.out.println("present options screen called");
         BaseController optionsController = new OptionsWindowController(emailManager, this, optionsFxml);
         setStageFor(optionsController);
     }
@@ -95,7 +92,6 @@ public class Coordinator {
         if (stageToBeClosed != null) {
             activeStages.remove(objectForKey);
             stageToBeClosed.close();
-            System.out.println("Stage removed and closed");
         }
     }
 
@@ -108,18 +104,15 @@ public class Coordinator {
 
     public void setColorThemes(ColorThemes value) {
         colorThemes = value;
-        System.out.println("Current selected color theme is " + colorThemes.toString());
     }
 
     // Slider
-
     public FontSize getFontSize() {
         return fontSize;
     }
 
     public void setFontSize(int size) {
         fontSize = FontSize.values()[size];
-        System.out.println("Current font size is " + fontSize);
     }
 
 }

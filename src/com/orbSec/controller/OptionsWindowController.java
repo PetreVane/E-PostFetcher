@@ -28,14 +28,13 @@ public class OptionsWindowController extends BaseController implements Initializ
 
     @FXML
     void applyChangesPressed() {
-        System.out.println("apply changes pressed");
         updateFontSizeValue();
         updateThemePickerValue();
+        coordinator.dismissOptionsScreen();
     }
 
     @FXML
     void cancelButtonPressed() {
-        System.out.println("Cancel button pressed");
         coordinator.dismissOptionsScreen();
     }
 
@@ -60,7 +59,6 @@ public class OptionsWindowController extends BaseController implements Initializ
             @Override
             public String toString(Double object) {
                 int i = object.intValue();
-//                System.out.println("Font size value: " + FontSize.values()[i].toString());
                 return FontSize.values()[i].toString();
             };
 
@@ -69,9 +67,6 @@ public class OptionsWindowController extends BaseController implements Initializ
                 return null;
             }
         });
-
-
-
     }
 
     private void configureThemePicker() {
@@ -81,20 +76,19 @@ public class OptionsWindowController extends BaseController implements Initializ
         */
         themePicker.setItems(FXCollections.observableArrayList(ColorThemes.values()));
         themePicker.setValue(coordinator.getColorTheme());
-    }
-
-    private void updateThemePickerValue() {
         themePicker.valueProperty().addListener((listener, oldValue, newValue) -> {
             themePicker.setValue(newValue);
             coordinator.setColorThemes(newValue);
-//            System.out.println(" You've selected " + newValue.toString());
         });
     }
 
+    private void updateThemePickerValue() {
+        var currentTheme = themePicker.getValue();
+        coordinator.setColorThemes(currentTheme);
+    }
+
     private void updateFontSizeValue() {
-        fontSizeSlider.valueProperty().addListener((listener, oldValue, newValue) -> {
-            fontSizeSlider.setValue(newValue.intValue());
-            coordinator.setFontSize(newValue.intValue());
-        });
+        int updatedValue = (int)fontSizeSlider.getValue();
+        coordinator.setFontSize(updatedValue);
     }
 }
