@@ -19,9 +19,9 @@ public class Coordinator {
 
     EmailManager emailManager;
 
-    private String loginFxml = "LoginWindow.fxml";
-    private String mainFxml = "MainWindow.fxml";
-    private String optionsFxml = "OptionsWindow.fxml";
+    private final String loginFxml = "LoginWindow.fxml";
+    private final String mainFxml = "MainWindow.fxml";
+    private final String optionsFxml = "OptionsWindow.fxml";
     private HashMap<String, Stage> activeStages = new HashMap<>();
 
     private ColorThemes colorThemes = ColorThemes.DEFAULT;
@@ -101,12 +101,25 @@ public class Coordinator {
 
     ///MARK: -  Getters & Setters
 
+    // choiceBox
     public ColorThemes getColorTheme() {
         return colorThemes;
     }
 
+    public void setColorThemes(ColorThemes value) {
+        colorThemes = value;
+        System.out.println("Current selected color theme is " + colorThemes.toString());
+    }
+
+    // Slider
+
     public FontSize getFontSize() {
         return fontSize;
+    }
+
+    public void setFontSize(int size) {
+        fontSize = FontSize.values()[size];
+        System.out.println("Current font size is " + fontSize);
     }
 
 }

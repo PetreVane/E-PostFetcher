@@ -29,15 +29,14 @@ public class OptionsWindowController extends BaseController implements Initializ
     @FXML
     void applyChangesPressed() {
         System.out.println("apply changes pressed");
-        coordinator.dismissOptionsScreen();
-
+        updateFontSizeValue();
+        updateThemePickerValue();
     }
 
     @FXML
     void cancelButtonPressed() {
         System.out.println("Cancel button pressed");
         coordinator.dismissOptionsScreen();
-
     }
 
 
@@ -61,6 +60,7 @@ public class OptionsWindowController extends BaseController implements Initializ
             @Override
             public String toString(Double object) {
                 int i = object.intValue();
+//                System.out.println("Font size value: " + FontSize.values()[i].toString());
                 return FontSize.values()[i].toString();
             };
 
@@ -70,14 +70,31 @@ public class OptionsWindowController extends BaseController implements Initializ
             }
         });
 
-        fontSizeSlider.valueProperty().addListener((listener, oldValue, newValue) -> {
-            fontSizeSlider.setValue(newValue.intValue());
-        });
+
 
     }
 
     private void configureThemePicker() {
+        /*
+         FXCollections.observableArrayList convert a simple array into an array of observable items
+         Enum.values() returns an array of items contained by the enum
+        */
         themePicker.setItems(FXCollections.observableArrayList(ColorThemes.values()));
         themePicker.setValue(coordinator.getColorTheme());
+    }
+
+    private void updateThemePickerValue() {
+        themePicker.valueProperty().addListener((listener, oldValue, newValue) -> {
+            themePicker.setValue(newValue);
+            coordinator.setColorThemes(newValue);
+//            System.out.println(" You've selected " + newValue.toString());
+        });
+    }
+
+    private void updateFontSizeValue() {
+        fontSizeSlider.valueProperty().addListener((listener, oldValue, newValue) -> {
+            fontSizeSlider.setValue(newValue.intValue());
+            coordinator.setFontSize(newValue.intValue());
+        });
     }
 }
