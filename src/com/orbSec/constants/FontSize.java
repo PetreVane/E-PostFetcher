@@ -24,17 +24,16 @@ public enum FontSize {
     }
 
     public String getFilePathFor(FontSize fontSize) {
-        String result= "";
 
         switch (fontSize) {
             case LARGE:
-                result = "css/fontBig.css";
+                return "css/fontBig.css";
             case SMALL:
-                result = "css/fontSmall.css";
+                return "css/fontSmall.css";
             case MEDIUM:
-                result = "css/default.css";
+                return "css/default.css";
+            default:
+                return null;
         }
-
-        return result;
     }
 }

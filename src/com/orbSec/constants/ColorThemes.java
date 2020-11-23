@@ -29,16 +29,15 @@ public enum ColorThemes {
     // returns the path to css file location, for each case
     public String getFilePathFor(ColorThemes colorTheme) {
 
-        String result = "";
-
         switch (colorTheme) {
             case DARK:
-                result = "css/themeDark.css";
+                return "css/themeDark.css";
             case LIGHT:
-                result = "css/themeLight.css";
+                return "css/themeLight.css";
             case DEFAULT:
-                result= "css/themeDefault.css";
+                return "css/themeDefault.css";
+            default:
+                return null;
         }
-        return result;
     }
 }

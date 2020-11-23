@@ -95,6 +95,18 @@ public class Coordinator {
         }
     }
 
+    public void updateStageStyle() {
+        for(Stage stage: activeStages.values()) {
+            Scene scene = stage.getScene();
+            scene.getStylesheets().clear();
+            var size = getClass().getResource(fontSize.getFilePathFor(fontSize)).toExternalForm();
+            var theme = getClass().getResource(colorThemes.getFilePathFor(colorThemes)).toExternalForm();
+            scene.getStylesheets().add(size);
+            scene.getStylesheets().add(theme);
+            
+        }
+    }
+
     ///MARK: -  Getters & Setters
 
     // choiceBox

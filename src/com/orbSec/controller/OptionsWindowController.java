@@ -30,7 +30,8 @@ public class OptionsWindowController extends BaseController implements Initializ
     void applyChangesPressed() {
         updateFontSizeValue();
         updateThemePickerValue();
-        coordinator.dismissOptionsScreen();
+        coordinator.updateStageStyle();
+//        coordinator.dismissOptionsScreen();
     }
 
     @FXML
