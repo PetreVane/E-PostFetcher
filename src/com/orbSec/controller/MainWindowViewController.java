@@ -27,7 +27,23 @@ public class MainWindowViewController  extends BaseController {
 
 
     @FXML
-    void optionButtonPressed(ActionEvent event) {
-        coordinator.presentOptionsScreen();
+    void addNewAccountPresed(ActionEvent event) {
+        System.out.println("New account pressed");
+        coordinator.presentLoginScreen();
+
     }
+
+    @FXML
+    void openButtonPressed(ActionEvent event) {
+        System.out.println("Open button pressed");
+
+    }
+
+    @FXML
+    void optionButtonPressed(ActionEvent event) {
+        System.out.println("Options button pressed");
+        coordinator.presentOptionsScreen();
+
+    }
+
 }

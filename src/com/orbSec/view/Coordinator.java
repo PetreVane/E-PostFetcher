@@ -103,7 +103,7 @@ public class Coordinator {
             var theme = getClass().getResource(colorThemes.getFilePathFor(colorThemes)).toExternalForm();
             scene.getStylesheets().add(size);
             scene.getStylesheets().add(theme);
-            
+
         }
     }
 

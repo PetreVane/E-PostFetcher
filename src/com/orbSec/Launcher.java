@@ -14,6 +14,8 @@ public class Launcher extends Application {
     public void start(Stage stage) throws Exception {
 
         Coordinator coordinator = new Coordinator(new EmailManager());
+//        coordinator.presentOptionsScreen();
+//        coordinator.updateStageStyle();
         coordinator.presentLoginScreen();
     }
 }

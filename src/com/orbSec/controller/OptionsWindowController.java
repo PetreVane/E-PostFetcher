@@ -31,7 +31,7 @@ public class OptionsWindowController extends BaseController implements Initializ
         updateFontSizeValue();
         updateThemePickerValue();
         coordinator.updateStageStyle();
-//        coordinator.dismissOptionsScreen();
+        coordinator.dismissOptionsScreen();
     }
 
     @FXML
@@ -44,6 +44,8 @@ public class OptionsWindowController extends BaseController implements Initializ
     public void initialize(URL location, ResourceBundle resources) {
         configureThemePicker();
         configureFontSizeSlider();
+        coordinator.getColorTheme();
+        coordinator.getFontSize();
     }
 
     private void configureFontSizeSlider() {
