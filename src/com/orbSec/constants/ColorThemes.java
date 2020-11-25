@@ -1,5 +1,10 @@
 package com.orbSec.constants;
 
+/**
+ * @author Created by Petre Vane
+ * @project EmailClient
+ */
+
 public enum ColorThemes {
     LIGHT,
     DEFAULT,

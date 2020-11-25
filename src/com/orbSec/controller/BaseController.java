@@ -3,6 +3,11 @@ package com.orbSec.controller;
 import com.orbSec.EmailManager;
 import com.orbSec.view.Coordinator;
 
+/**
+ * @author Created by Petre Vane
+ * @project EmailClient
+ */
+
 public abstract class BaseController {
 
     protected EmailManager emailManager;

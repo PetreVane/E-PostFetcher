@@ -15,6 +15,11 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.HashMap;
 
+/**
+ * @author Created by Petre Vane
+ * @project EmailClient
+ */
+
 public class Coordinator {
 
     EmailManager emailManager;

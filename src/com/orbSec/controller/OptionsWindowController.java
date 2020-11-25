@@ -1,5 +1,12 @@
 package com.orbSec.controller;
 
+/**
+ * Demo app that shows a very simple Mail Client
+ *
+ * @author Petre Vane
+ *
+ */
+
 import com.orbSec.EmailManager;
 import com.orbSec.constants.ColorThemes;
 import com.orbSec.constants.FontSize;
@@ -13,6 +20,11 @@ import javafx.util.StringConverter;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+/**
+ * @author Created by Petre Vane
+ * @project EmailClient
+ */
 
 public class OptionsWindowController extends BaseController implements Initializable {
 
