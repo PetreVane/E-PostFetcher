@@ -3,6 +3,8 @@ package com.orbSec.models.services;
 import com.orbSec.EmailManager;
 import com.orbSec.controller.AutenticationResult;
 import com.orbSec.models.EmailAccount;
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
 
 import javax.mail.*;
 
@@ -10,7 +12,7 @@ import javax.mail.*;
  * @author Created by Petre Vane on 25/11/2020
  * @project EmailClient
  */
-public class AuthenticationService {
+public class AuthenticationService extends Service<AutenticationResult> {
 
     EmailAccount emailAccount;
     EmailManager emailManager;
@@ -20,7 +22,7 @@ public class AuthenticationService {
         this.emailManager = emailManager;
     }
 
-    public AutenticationResult logUserIn() {
+    private AutenticationResult logUserIn() {
 
         // Anonymous authenticator object from java mail
         Authenticator authenticator = new Authenticator() {
@@ -35,7 +37,7 @@ public class AuthenticationService {
             Session session = Session.getInstance(emailAccount.getProperties(), authenticator);
 
             // 2. get a new store from session
-            Store store = session.getStore("imaps");
+            Store store = session.getStore("imap");
 
             // 3. initialise a new connection using the store
             store.connect(emailAccount.getProperties().getProperty("incomingHost"), emailAccount.getEmailAddress(), emailAccount.getPassword());
@@ -65,4 +67,13 @@ public class AuthenticationService {
         return AutenticationResult.SUCCESS;
     }
 
+    @Override
+    protected Task<AutenticationResult> createTask() {
+        return new Task<AutenticationResult>() {
+            @Override
+            protected AutenticationResult call() throws Exception {
+                return logUserIn();
+            }
+        };
+    }
 }

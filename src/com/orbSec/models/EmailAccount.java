@@ -26,7 +26,7 @@ public class EmailAccount {
     private void configureProperties() {
         properties = new Properties();
         properties.put("incomingHost", "imap.gmail.com");
-        properties.put("mail.store.protocol", "imaps");
+        properties.put("mail.store.protocol", "imap");
         properties.put("mail.transport.protocol", "smtp");
         properties.put("mail.smtp.host", "smtp.gmail.com");
         properties.put("mail.smtp.auth", "true");
