@@ -4,19 +4,23 @@ import com.orbSec.EmailManager;
 import com.orbSec.view.Coordinator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TreeView;
 import javafx.scene.web.WebView;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * @author Created by Petre Vane
  * @project EmailClient
  */
 
-public class MainWindowViewController  extends BaseController {
+public class MainWindowViewController  extends BaseController implements Initializable {
 
     @FXML
-    private TreeView<?> messagesTreeView;
+    private TreeView<String> messagesTreeView;
 
     @FXML
     private TableView<?> messagesTableView;
@@ -32,10 +36,9 @@ public class MainWindowViewController  extends BaseController {
 
 
     @FXML
-    void addNewAccountPresed(ActionEvent event) {
+    void addNewAccountPressed(ActionEvent event) {
         System.out.println("New account pressed");
         coordinator.presentLoginScreen();
-
     }
 
     @FXML
@@ -51,4 +54,14 @@ public class MainWindowViewController  extends BaseController {
 
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        configureMessagesTreeView();
+    }
+
+    private void configureMessagesTreeView() {
+        messagesTreeView.setRoot(emailManager.getRootItem());
+        // hide root dir because is empty
+        messagesTreeView.setShowRoot(false);
+    }
 }

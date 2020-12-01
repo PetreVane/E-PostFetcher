@@ -17,7 +17,7 @@
             <items>
                   <MenuItem mnemonicParsing="false" onAction="#openButtonPressed" text="Open" />
               <MenuItem mnemonicParsing="false" text="Close" />
-                  <MenuItem mnemonicParsing="false" onAction="#addNewAccountPresed" text="Add new account" />
+                  <MenuItem mnemonicParsing="false" onAction="#addNewAccountPressed" text="Add new account" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">

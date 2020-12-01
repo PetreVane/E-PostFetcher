@@ -37,7 +37,7 @@ public class AuthenticationService extends Service<AutenticationResult> {
             Session session = Session.getInstance(emailAccount.getProperties(), authenticator);
 
             // 2. get a new store from session
-            Store store = session.getStore("imap");
+            Store store = session.getStore("imaps");
 
             // 3. initialise a new connection using the store
             store.connect(emailAccount.getProperties().getProperty("incomingHost"), emailAccount.getEmailAddress(), emailAccount.getPassword());
@@ -45,6 +45,7 @@ public class AuthenticationService extends Service<AutenticationResult> {
             // 4. pass this store to your emailAccount object.
             // Remember to add a catch clause which handles the case where typed in credentials are wrong.
             emailAccount.setStore(store);
+            emailManager.presentEmailAccountDirectories(emailAccount);
 
 
         } catch (NoSuchProviderException e) {

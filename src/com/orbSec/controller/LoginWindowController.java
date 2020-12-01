@@ -32,6 +32,7 @@ public class LoginWindowController extends BaseController {
 
     @FXML
     void loginButtonPressed() {
+        setDefaultCredentials();
         System.out.println(" Login button pressed");
         String userEmailAddress = emailTextField.getText();
         String userPassword = passTextField.getText();
@@ -57,6 +58,7 @@ public class LoginWindowController extends BaseController {
         if (userInputIsValid(userEmailAddress, userPassword)) {
 
             AuthenticationService authService = new AuthenticationService(new EmailAccount(userEmailAddress, userPassword), emailManager);
+            /* multi threaded authentication */
             authService.start();
             authService.setOnSucceeded(event -> {
 
@@ -83,4 +85,6 @@ public class LoginWindowController extends BaseController {
             });
         }
     }
+
+  
 }
