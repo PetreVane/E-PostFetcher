@@ -32,7 +32,7 @@ public class LoginWindowController extends BaseController {
 
     @FXML
     void loginButtonPressed() {
-        setDefaultCredentials();
+//        setDefaultCredentials();
         System.out.println(" Login button pressed");
         String userEmailAddress = emailTextField.getText();
         String userPassword = passTextField.getText();
@@ -67,7 +67,10 @@ public class LoginWindowController extends BaseController {
                     case SUCCESS:
                         System.out.println("User logged in successfully with email " + userEmailAddress);
                         System.out.println(AutenticationResult.SUCCESS.getDescription());
-                        coordinator.presentMainScreen();
+                        if (!coordinator.isMainScreenPresented()) {
+                            coordinator.presentMainScreen();
+                        }
+                        coordinator.dismissLoginScreen();
                         break;
 
                     case UNEXPECTED_ERROR:
@@ -85,6 +88,5 @@ public class LoginWindowController extends BaseController {
             });
         }
     }
-
-  
+    
 }

@@ -9,6 +9,7 @@ import javafx.stage.Stage;
  * @project EmailClient
  */
 
+// Start the app logic
 public class Launcher extends Application {
 
     public static void main(String[] args) {
@@ -19,8 +20,6 @@ public class Launcher extends Application {
     public void start(Stage stage) throws Exception {
 
         Coordinator coordinator = new Coordinator(new EmailManager());
-//        coordinator.presentOptionsScreen();
-//        coordinator.updateStageStyle();
         coordinator.presentLoginScreen();
     }
 }

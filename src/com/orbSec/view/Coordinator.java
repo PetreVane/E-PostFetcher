@@ -28,12 +28,17 @@ public class Coordinator {
     private final String mainFxml = "MainWindow.fxml";
     private final String optionsFxml = "OptionsWindow.fxml";
     private HashMap<String, Stage> activeStages = new HashMap<>();
+    private boolean mainScreenPresented = false;
 
     private ColorThemes colorThemes = ColorThemes.DEFAULT;
     private FontSize fontSize = FontSize.MEDIUM;
 
     public Coordinator(EmailManager emailManager) {
         this.emailManager = emailManager;
+    }
+
+    public boolean isMainScreenPresented() {
+        return mainScreenPresented;
     }
 
     ///MARK: - Screen instantiation
@@ -44,11 +49,15 @@ public class Coordinator {
         setStageFor(loginController);
     }
 
+    public void dismissLoginScreen() {
+        removeStageForController(loginFxml);
+    }
+
     // Presents the main window. This is called when authentication is successful
     public void presentMainScreen() {
         BaseController mainController = new MainWindowViewController(emailManager, this, mainFxml);
         setStageFor(mainController);
-        removeStageForController(loginFxml);
+        mainScreenPresented = true;
     }
 
     // Presets option Screen
@@ -88,7 +97,6 @@ public class Coordinator {
         stage.show();
         activeStages.put(controllerName, stage);
     }
-
 
     private void removeStageForController(String objectForKey) {
 

@@ -11,6 +11,8 @@ import com.orbSec.models.services.RemoteDirectories;
  * @project EmailClient
  */
 
+
+// Class responsible with presenting email directories
 public class EmailManager {
 
    private CustomTreeItem<String> rootDirectory = new CustomTreeItem<String>("");

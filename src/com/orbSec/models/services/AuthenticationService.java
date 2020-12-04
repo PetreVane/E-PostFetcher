@@ -12,6 +12,8 @@ import javax.mail.*;
  * @author Created by Petre Vane on 25/11/2020
  * @project EmailClient
  */
+
+// Responsible with authentication to remote servers
 public class AuthenticationService extends Service<AutenticationResult> {
 
     EmailAccount emailAccount;

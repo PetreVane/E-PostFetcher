@@ -8,12 +8,14 @@ import java.util.Properties;
  * @project EmailClient
  */
 
+
+// Responsible for configuring email Accounts
 public class EmailAccount {
 
     private String emailAddress;
     private String password;
     private Properties properties;
-    private Store store; // class used for retrieving and sending messages
+    private Store store;
 
 
     public EmailAccount( String emailAddress, String password ) {
